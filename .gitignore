@@ -1,8 +1,6 @@
 ssh/
-_ks.cfg
 ks.cfg
 ks.bin
-_pubsub+.sh
 pubsub+.sh
 pubsub+.bin
 notes.txt

@@ -6,49 +6,45 @@ Two modes: PREP prepares a `solace-base` VM. SINGLE standalone PubSub+. TRIPLET 
 
 ## Why?
 
-Type1 VM without GUI hassle. Libvirt/KVM is free and runs really fast. Nothing fancy bash scripts. Relatable to Solace documentation. Short `how-to...` guide. Send it to new clients -> reduce back-n-forth emails. Tested on Centos8 and Ubuntu 20.04 LTS.
+Type1 VM without GUI hassle. Libvirt/KVM is free and runs really fast. Nothing fancy bash scripts. Relatable to Solace documentation. Podman is awesome. Short `how-to...` guide. Tested on Centos8 and Ubuntu 20.04 LTS.
 
-Note: If you don't like the VM part, comment lines 51 and 55 and don't use the `--prep` mode.
+Note: If you want the VM part, uncomment lines 56 and 59.
 
 ## Usage
 
 ```bash
 vm-starter.sh
 
-Usage: vm-starter.sh [-n solace | --name=solace] [--prep | --triplet] [-c 2 | --cpu=2] [-m 4096 | --memory=4096] [-d 50 | --disk=50]
+Usage: vm-starter.sh [--prep | --single | --triplet] [-c 2 | --cpu=2] [-m 4096 | --memory=4096] [-d 50 | --disk=50]
 ```
 
 Options
 
-Default settings: VM name, cpu memory and disk size. You generally only need to give `-n <prefix>` and either `--prep`, `single` or `--triplet`.
+Default settings: VM name, cpu memory and disk size. You generally only need to give `--prep`, `single` or `--triplet`.
 
-`-n | --name`     prefix used to create hostnames. The default is `solace`.
-`-c | --cpu`      number of cpus. The default is 2.
-`-m | --memory`   memory in GiB. Default is 8192.
-`-d | --disk`     disk in GiB. Default is 180. This is the host combined total for 3 VMs.
 `--prep`          create base VM image.
 `--single`        create single PubSub+ instance cloning from base image.
 `--triplet`       create HA triplet instances cloning from base image.
-no options        create 1 VM instance cloning from base image.
+`-c | --cpu`      number of cpus. The default is 2.
+`-m | --memory`   memory in GiB. Default is 8192.
+`-d | --disk`     disk in GiB. Default is 180. Combined host  total for 3 VMs.
 
-### PREP Mode
+### Prep Mode
 
 Creates a base image `solace-base` for cloning and also download Solace PubSub+ docker image. The base image can be re-used multiple times. This step may take several minutes to complete. You only need to perform this step once.
 
 ```bash
 vm-starter.sh -n solace --prep
-
-# Press <Enter> when prompted. Towards the end of the installation, 
-# when prompted to login, escape from the login prompt by issuing 
-# the key combination `Ctl+Shft+]`.
 ```
+
+Press <Enter> when prompted. Towards the end of the installation, when prompted to login, escape from the login prompt by issuing the key combination `Ctl+Shft+]`.
 
 The base image will be created and scrubbed to remove hostIDs, userID, etc. The image is located in `/var/lib/solace/images/solace-base.qcow2` and PubSub+ in `/var/lib/solace/software/solace-pubsub-standard-<latest>-docker.tar.gz` You will also have Libvirt VM management tools like `virt-manager` and `virsh`.
 
 ### Single Mode
 
 ```bash
-/vm-starter.sh -n solace --single
+vm-starter.sh -n solace --single
 ```
 
 This mode will clone 1 VM instance and install the latest `podman` and `slirp4netns` on it. Once this completes, PubSub+ will be installed and configured.
@@ -56,7 +52,7 @@ This mode will clone 1 VM instance and install the latest `podman` and `slirp4ne
 ### Triplet Mode
 
 ```bash
-/vm-starter.sh -n solace --triplet
+vm-starter.sh -n solace --triplet
 ```
 
 This mode will clone 3 VM instances and install the latest `podman` and `slirp4netns` on each VM. Once this completes, PubSub+ will be installed and configured for HA.
@@ -69,31 +65,6 @@ The following scripts are gzipped, base64 encoded and inlined. Both are mostly s
 
 - ks-cfg - virsh `kick-start` used to automate os install
 - pubsub+.sh - used to install pubsub+
-
-### PubSub+ Ports
-
-    2222  Solace CLI SSH/SFTP
-    8080  PubSub+ Manager, SEMP, SolAdmin
-    1943  PubSub+ Manager over HTTPS, SEMP over TLS, SolAdmin over TLS
-    5550  Health Check Listen Port
-    55555 Solace Message Format (SMF)
-    55003 SMF compressed
-    55556 SMF routing
-    55443 SMF TLS/SSL (with or without compression)
-    8008  Web Transport - WebSockets, Comet, etc.
-    1443  Web Transport TLS/SSL
-    5671  AMQP TLS/SSL
-    5672  AMQP
-    1883  MQTT
-    8883  MQTT TLS/SSL
-    8000  MQTT/WebSockets
-    8443  MQTT/WebSockets TLS/SSL
-    9000  REST
-    9443  REST TLS/SSL
-    8741  High Availability (HA) Mate Link
-    8300  HA Configuration Synchronization
-    8301  HA Configuration Synchronization
-    8302  HA Configuration Synchronization
 
 ### Privileges
 
