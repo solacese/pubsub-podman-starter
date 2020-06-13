@@ -61,10 +61,10 @@ This mode will clone 3 VM instances and install the latest `podman` and `slirp4n
 
 ## Lab Notes
 
-The following scripts are gzipped, base64 encoded and inlined. Both are mostly static. See comments for how this is done, incase you wish to make changes. 
+The following scripts are gzipped, base64 encoded and inlined. Both are mostly static. See comments for how this is done, incase you wish to make changes. They are here for reference only since the script generates them.
 
-- ks-cfg - virsh `kick-start` used to automate os install
-- pubsub+.sh - used to install pubsub+
+- "_ks-cfg" - virsh `kick-start` used to automate os install
+- "_pubsub+.sh" - used to install pubsub+
 
 ### Privileges
 
