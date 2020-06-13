@@ -37,7 +37,7 @@ Creates a base image `solace-base` for cloning and also download Solace PubSub+ 
 vm-starter.sh -n solace --prep
 ```
 
-Press <Enter> when prompted. Towards the end of the installation, when prompted to login, escape from the login prompt by issuing the key combination `Ctl+Shft+]`.
+Press **Enter** when prompted. Towards the end of the installation, when prompted to login, escape from the login prompt by issuing the key combination `Ctl+Shft+]`.
 
 The base image will be created and scrubbed to remove hostIDs, userID, etc. The image is located in `/var/lib/solace/images/solace-base.qcow2` and PubSub+ in `/var/lib/solace/software/solace-pubsub-standard-<latest>-docker.tar.gz` You will also have Libvirt VM management tools like `virt-manager` and `virsh`.
 
