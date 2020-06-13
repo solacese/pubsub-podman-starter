@@ -86,3 +86,7 @@ Max open files            8096                 65535                files
 ```
 
 Another, is to set limits on the host, then set `podman create` to use the host settings with `--ulimit host`.
+
+## To Do
+
+- Add HA Proxy load balancer
