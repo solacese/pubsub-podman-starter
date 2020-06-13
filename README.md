@@ -1,14 +1,17 @@
 # PubSub+ Quick Guide
 
-Setup a Solace PubSub+ event broker for standalone and HA deployment backed by Libvirt/KVM and Podman.
+Setup a Solace PubSub+ event brokers standalone or HA backed by Libvirt/KVM and Podman.
 
-Two modes: PREP prepares a `solace-base` VM. SINGLE standalone PubSub+. TRIPLET HA triplet.
+Three modes:
+- PREP prepares a `solace-base` VM
+- SINGLE standalone PubSub+
+- TRIPLET HA triplet PubSub+
 
 ## Why?
 
-Type1 VM without GUI hassle. Libvirt/KVM is free and runs really fast. Nothing fancy bash scripts. Relatable to Solace documentation. Podman is awesome. Short `how-to...` guide. Tested on Centos8 and Ubuntu 20.04 LTS.
+Type1 VM without GUI hassle, Libvirt/KVM is free and runs really fast. Nothing fancy bash scripts. No magic. Podman is awesome. Short `how-to...` guide for clients.
 
-Note: If you want the VM part, uncomment lines 56 and 59.
+Note: If you want the VM part, uncomment lines 56 and 59. Tested on Centos8 and Ubuntu 20.04 LTS.
 
 ## Usage
 
