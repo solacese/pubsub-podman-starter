@@ -18,7 +18,7 @@ Note: If you want the VM part, uncomment lines 56 and 59. Tested on Centos8 and 
 ```bash
 vm-starter.sh
 
-Usage: vm-starter.sh [--prep | --single | --triplet] [-c 2 | --cpu=2] [-m 4096 | --memory=4096] [-d 50 | --disk=50]
+Usage: vm-starter.sh --prep|--single|--triplet [-c 2|--cpu=2] [-m 4096|--memory=4096] [-d 50|--disk=50]
 ```
 
 Options
