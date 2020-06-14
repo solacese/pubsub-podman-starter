@@ -23,7 +23,7 @@ Usage: vm-starter.sh [--prep | --single | --triplet] [-c 2 | --cpu=2] [-m 4096 |
 
 Options
 
-Default settings: VM name, cpu memory and disk size. You generally only need to give `--prep`, `single` or `--triplet`.
+Default settings: VM name, cpu memory and disk size. You generally only need to give `--prep`, `--single` or `--triplet`.
 
 `--prep`          create base VM image.
 `--single`        create single PubSub+ instance cloning from base image.
